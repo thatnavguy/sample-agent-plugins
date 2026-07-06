@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "microsoft-docs": {
+      "type": "http",
+      "url": "https://learn.microsoft.com/api/mcp"
+    },
+    "bc-telemetry-buddy": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "bc-telemetry-buddy-mcp"],
+      "env": {
+        "BC_TELEMETRY_AUTH_METHOD": "vscode"
+      }
+    }
+  }
+}

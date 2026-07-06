@@ -1,0 +1,12 @@
+{
+  "name": "bc-ai-team-setup",
+  "description": "Sample Business Central Copilot setup for team distribution.",
+  "version": "1.0.0",
+  "author": {
+    "name": "thatnavguy",
+    "url": "https://github.com/thatnavguy"
+  },
+  "skills": "skills/",
+  "agents": "agents/",
+  "mcpServers": ".mcp.json"
+}

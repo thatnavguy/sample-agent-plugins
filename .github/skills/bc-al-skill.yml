@@ -1,0 +1,81 @@
+name: generate-al-object
+description: >
+  Generates a well-formed AL object scaffold (Table, Page, Codeunit, Report,
+  XMLport, Query, or Enum) for a Business Central extension.
+
+instructions: |
+  Generate a minimal but complete AL object of the requested type.
+
+  Rules:
+  1. Use the object ID provided (or 50000 as placeholder if none given).
+  2. Apply the name-prefix supplied by the user; default to "ABC" if absent.
+  3. Include all mandatory properties for the object type.
+  4. Add a representative set of fields / controls to illustrate the pattern.
+  5. Add a `trigger OnInsert()` (tables) or `trigger OnAction()` (pages) stub.
+  6. Close every object with a matching `}`.
+  7. Output only AL code – no surrounding markdown fences unless asked.
+
+  ## Object type cheat sheet
+
+  ### Table (50000..99999)
+  ```al
+  table 50000 "ABC My Table"
+  {
+      DataClassification = CustomerContent;
+      fields
+      {
+          field(1; "No."; Code[20]) { }
+          field(2; Description; Text[100]) { }
+      }
+      keys
+      {
+          key(PK; "No.") { Clustered = true; }
+      }
+      trigger OnInsert() begin end;
+  }
+  ```
+
+  ### Page
+  ```al
+  page 50000 "ABC My Page"
+  {
+      PageType = Card;
+      SourceTable = "ABC My Table";
+      layout { area(Content) { group(General) { field("No."; Rec."No.") { ApplicationArea = All; } } } }
+      actions { area(Navigation) { } }
+  }
+  ```
+
+  ### Codeunit
+  ```al
+  codeunit 50000 "ABC My Codeunit"
+  {
+      procedure DoSomething(InputValue: Text): Text
+      begin
+          exit(InputValue);
+      end;
+  }
+  ```
+
+parameters:
+  - name: objectType
+    description: >
+      AL object type to generate: Table, Page, Codeunit, Report, XMLport,
+      Query, or Enum.
+    type: string
+    required: true
+
+  - name: objectId
+    description: Numeric object ID (50000–99999 for sandbox/PTE objects).
+    type: integer
+    required: false
+
+  - name: objectName
+    description: Human-readable object name without the prefix.
+    type: string
+    required: true
+
+  - name: namePrefix
+    description: Two-to-four-character registered object-name prefix (e.g. "ABC").
+    type: string
+    required: false

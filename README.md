@@ -6,15 +6,15 @@ Each sample demonstrates one plugin type from the [VS Code agent-customization s
 ## Repository layout
 
 ```
-.github/
-  agents/
-    bc-coding-agent.yml   ← Coding agent  (custom chat participant)
-  skills/
-    bc-al-skill.yml       ← Skill         (reusable AL object generator)
-  hooks/
-    bc-review-hook.yml    ← Hook          (pre-commit AL code reviewer)
-.vscode/
-  mcp.json                ← Microsoft Learn MCP server configuration
+agents/
+  bc-developer.md              ← Coding agent  (custom chat participant)
+skills/
+  bc-al-naming/SKILL.md        ← Skill         (reusable AL naming rules)
+hooks/
+  al-compile.json              ← Hook          (pre-commit AL compile check)
+  scripts/al-compile-check.ps1 ← Hook script   (AL compile runner)
+mcp.json                       ← MCP server configuration
+plugin.json                    ← Plugin manifest
 ```
 ## References
 
